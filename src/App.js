@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import {  Routes , Route } from "react-router-dom";
+import {
+  HomePageContainer,
+  EmployeeContainer,
+  TaskContainer,
+  AllEmployeesContainer,
+  AllTasksContainer,
+  NewTaskContainer,
+  EditTaskContainer
+} from './components/containers';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/" element={<HomePageContainer></HomePageContainer>} exact> 
+        </Route>
+        <Route path="/employees" element={<AllEmployeesContainer></AllEmployeesContainer>} exact> 
+        </Route>
+        <Route path="/employee/:id" element={<EmployeeContainer></EmployeeContainer>} exact> 
+        </Route>
+        <Route path="/tasks" element={<AllTasksContainer></AllTasksContainer>} exact> 
+        </Route>
+        <Route path="/newtask" element={<NewTaskContainer></NewTaskContainer>} exact> 
+        </Route>
+        <Route path="/task/:id" element={<TaskContainer></TaskContainer>} exact> 
+        </Route>
+        <Route path="/edittask/:id" element={<EditTaskContainer></EditTaskContainer>} exact> 
+        </Route>
+
+      </Routes>        
     </div>
   );
 }
