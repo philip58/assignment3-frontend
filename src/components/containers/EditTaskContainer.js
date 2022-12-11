@@ -3,6 +3,20 @@ import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 import { fetchTaskThunk, editTaskThunk } from "../../store/thunks";
+import { useParams } from "react-router-dom";
+
+const withRouter = WrappedComponent => props => {
+    const params = useParams();
+    // etc... other react-router-dom v6 hooks
+  
+    return (
+      <WrappedComponent
+        {...props}
+        params={params}
+        // etc...
+      />
+    );
+  };
 
 class EditTaskContainer extends Component {
   constructor(props) {
@@ -18,7 +32,7 @@ class EditTaskContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchTask(this.props.match.params.id);
+    this.props.fetchTask(this.props.params.id);
     this.setState({
       description: this.props.task.description,
       prioritylevel: this.props.task.prioritylevel,
@@ -122,4 +136,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(mapState, mapDispatch)(EditTaskContainer);
+export default withRouter(connect(mapState, mapDispatch)(EditTaskContainer));

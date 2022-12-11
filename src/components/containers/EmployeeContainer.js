@@ -6,7 +6,22 @@ import {
   editTaskThunk,
 } from "../../store/thunks";
 
+import { useParams } from "react-router";
+
 import { EmployeeView } from "../views";
+
+const withRouter = WrappedComponent => props => {
+    const params = useParams();
+    // etc... other react-router-dom v6 hooks
+  
+    return (
+      <WrappedComponent
+        {...props}
+        params={params}
+        // etc...
+      />
+    );
+  };
 
 class EmployeeContainer extends Component {
   componentDidMount() {
@@ -39,4 +54,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(mapState, mapDispatch)(EmployeeContainer);
+export default withRouter(connect(mapState, mapDispatch)(EmployeeContainer));
