@@ -4,18 +4,18 @@ import { fetchTaskThunk } from "../../store/thunks";
 import { TaskView } from "../views";
 import { useParams } from "react-router";
 
-const withRouter = WrappedComponent => props => {
-    const params = useParams();
-    // etc... other react-router-dom v6 hooks
-  
-    return (
-      <WrappedComponent
-        {...props}
-        params={params}
-        // etc...
-      />
-    );
-  };
+const withRouter = (WrappedComponent) => (props) => {
+  const params = useParams();
+  // etc... other react-router-dom v6 hooks
+
+  return (
+    <WrappedComponent
+      {...props}
+      params={params}
+      // etc...
+    />
+  );
+};
 
 class TaskContainer extends Component {
   componentDidMount() {

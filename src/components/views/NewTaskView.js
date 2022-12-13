@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const NewTaskView = (props) => {
   const { handleChange, handleSubmit, error } = props;
 
@@ -55,6 +56,11 @@ const NewTaskView = (props) => {
           <br />
         </form>
         {error !== "" && <p>{error}</p>}
+      </div>
+      <div>
+        <button>
+            <Link to={"/"}>Home Page</Link>
+        </button>
       </div>
     </div>
   );

@@ -10,11 +10,7 @@ class AllEmployeesContainer extends Component {
     this.props.fetchAllEmployees();
   }
   render() {
-    return (
-      <AllEmployeesView
-        allEmployees={this.props.allEmployees}
-      />
-    );
+    return <AllEmployeesView allEmployees={this.props.allEmployees} />;
   }
 }
 

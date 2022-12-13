@@ -6,36 +6,43 @@ import {
   editTaskThunk,
 } from "../../store/thunks";
 
-import { useParams } from "react-router";
-
 import { EmployeeView } from "../views";
 
-const withRouter = WrappedComponent => props => {
-    const params = useParams();
-    // etc... other react-router-dom v6 hooks
-  
-    return (
-      <WrappedComponent
-        {...props}
-        params={params}
-        // etc...
-      />
-    );
-  };
+import { useParams } from "react-router";
+
+import { Link } from "react-router-dom";
+
+const withRouter = (WrappedComponent) => (props) => {
+  const params = useParams();
+  // etc... other react-router-dom v6 hooks
+
+  return (
+    <WrappedComponent
+      {...props}
+      params={params}
+      // etc...
+    />
+  );
+};
 
 class EmployeeContainer extends Component {
   componentDidMount() {
-    this.props.fetchEmployee(this.props.match.params.id);
+    this.props.fetchEmployee(this.props.params.id);
     this.props.fetchTasks();
   }
 
   render() {
     return (
-      <EmployeeView
-        employee={this.props.employee}
-        editTask={this.props.editTask}
-        allTasks={this.props.allTasks}
-      />
+      <div>
+        <EmployeeView
+          employee={this.props.employee}
+          editTask={this.props.editTask}
+          allTasks={this.props.allTasks}
+        />
+        <button>
+          <Link to={"/"}>Home Page </Link>
+        </button>
+      </div>
     );
   }
 }
